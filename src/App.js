@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./App.css";
 import { Row, Col, Typography, Table, Button } from "antd";
+import "./App.css";
 const { Title, Text } = Typography;
 
 const makeDummyTest = () => {
@@ -125,7 +125,7 @@ class App extends Component {
 
         <Row>
           <Col span={18} offset={3}>
-            <Table columns={columns} dataSource={tests} />
+            <Table columns={columns} dataSource={tests} rowKey="description"/>
             {hasTestRan && queuedTests.length === 0 && (
               <Title level={2} className="app-title">
                 DONE ALL TEST HAVE BEEN COMPLETED
