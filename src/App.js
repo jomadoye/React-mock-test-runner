@@ -125,7 +125,7 @@ class App extends Component {
 
         <Row>
           <Col span={18} offset={3}>
-            <Table columns={columns} dataSource={tests} rowKey="description"/>
+            <Table columns={columns} dataSource={tests} rowKey="description" />
             {hasTestRan && queuedTests.length === 0 && (
               <Title level={2} className="app-title">
                 DONE ALL TEST HAVE BEEN COMPLETED
@@ -161,7 +161,9 @@ class App extends Component {
             <Text>
               Amount of tests that have failed so far:{" "}
               <strong>
-                {tests.length - (queuedTests.length + passedTests.length)}
+                {!hasTestRan
+                  ? 0
+                  : tests.length - (queuedTests.length + passedTests.length)}
               </strong>
             </Text>
             <br />
