@@ -12,28 +12,29 @@ const makeDummyTest = () => {
   };
 };
 
+const initialTests = [
+  { description: "uploads go in both directions", run: makeDummyTest() },
+  { description: "PDFs are adequately waterproof", run: makeDummyTest() },
+  {
+    description: "videos are heated to 12,000,000 Kelvin",
+    run: makeDummyTest()
+  },
+  { description: "subpixels can go rock climbing", run: makeDummyTest() },
+  {
+    description: "images are squarer than traffic cones",
+    run: makeDummyTest()
+  },
+  {
+    description: "metaproperties don't go too meta",
+    run: makeDummyTest()
+  }
+]
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      tests: [
-        { description: "uploads go in both directions", run: makeDummyTest() },
-        { description: "PDFs are adequately waterproof", run: makeDummyTest() },
-        {
-          description: "videos are heated to 12,000,000 Kelvin",
-          run: makeDummyTest()
-        },
-        { description: "subpixels can go rock climbing", run: makeDummyTest() },
-        {
-          description: "images are squarer than traffic cones",
-          run: makeDummyTest()
-        },
-        {
-          description: "metaproperties don't go too meta",
-          run: makeDummyTest()
-        }
-      ],
+      tests: initialTests,
       hasTestRan: false,
       passedTests: [],
       queuedTests: []
@@ -59,7 +60,7 @@ class App extends Component {
   };
 
   resetTestState = () => {
-    this.setState({ passedTests: [], queuedTests: [], hasTestRan: false });
+    this.setState({ passedTests: [], queuedTests: [], hasTestRan: false, tests: initialTests });
   };
 
   startTests = () => {
@@ -67,6 +68,7 @@ class App extends Component {
     this.setState({
       passedTests: [],
       hasTestRan: true,
+      tests: initialTests,
       queuedTests: [...tests.map(test => test.description)]
     });
     const testQueue = this.state.tests.map(
@@ -178,8 +180,8 @@ class App extends Component {
                 {!hasTestRan
                   ? "Test have not yet ran"
                   : queuedTests.length === 0
-                  ? "TRUE"
-                  : "FALSE"}
+                    ? "TRUE"
+                    : "FALSE"}
               </strong>
             </Text>
           </Col>
